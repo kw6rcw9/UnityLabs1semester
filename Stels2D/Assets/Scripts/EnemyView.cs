@@ -66,11 +66,11 @@ public class EnemyView : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + DirectionFromAngle(-transform.eulerAngles.z, -_angle / 2) * _radius);
         Gizmos.DrawLine(transform.position, transform.position + DirectionFromAngle(-transform.eulerAngles.z, _angle / 2) * _radius);
 
-        if (_canSeePlayer)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, Player.transform.position);
-        }
+        //if (_canSeePlayer)
+        //{
+        //    Gizmos.color = Color.green;
+        //    //Gizmos.DrawLine(transform.position, Player.transform.position);
+        //}
     }
     private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)
     {
