@@ -4,41 +4,40 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
-    Rigidbody2D _rigidbody;
-    [SerializeField] float _speed = 4;
-    void Start()
+    [SerializeField] GameObject _startPos;
+    [SerializeField] float _speed = 5;
+    Rigidbody2D rb;
+    private Vector2 _moveDirection;
+    private void Start()
     {
-        
-        _rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+        transform.position = _startPos.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void FixedUpdate()
     {
         Move();
         
     }
 
-    private void Move()
+    private void Update()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            _rigidbody.AddForce(Vector2.left * _speed);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            _rigidbody.AddForce(Vector2.right * _speed);
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            _rigidbody.AddForce(Vector2.up * _speed);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            _rigidbody.AddForce(Vector2.down * _speed);
-        }
+        Inputs();
+   
+    }
 
+    void Inputs()
+    {
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+
+        _moveDirection = new Vector2(x, y).normalized;
+    }
+    void Move()
+    {
+        rb.velocity = new Vector2(_moveDirection.x * _speed, _moveDirection.y * _speed);
 
     }
+
 }
