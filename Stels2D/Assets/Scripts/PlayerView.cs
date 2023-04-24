@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerView : MonoBehaviour
 {
     [SerializeField] private LayerMask mask;
@@ -21,24 +22,42 @@ public class PlayerView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if(transform.childCount == 1)
-        //{
-            Debug.DrawRay(transform.position, transform.right * 100, Color.green);
-        //}
-        if (Input.GetMouseButtonDown(0))
+        if (transform.childCount == 1)
         {
-            _point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            _direction = _point - transform.position;
-            _direction.Normalize();
-            LookAtPoint();
-            
-           
-                _enemy.GetComponent<Renderer>().material.color = Color.red;
+            Debug.DrawRay(transform.position, transform.right * 100, Color.green);
 
+            if (Input.GetMouseButtonDown(0))
+            {
+                _point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                _direction = _point - transform.position;
+                _direction.Normalize();
+                LookAtPoint();
+                float _direction2 = Vector2.Distance(transform.position, _enemy.transform.position);
+                if (!Physics2D.Raycast(transform.position, _direction, _direction2, obsMask))
+                {
+                    if(_enemy != null)
+                    {
+                        _enemy.gameObject.GetComponent<Renderer>().material.color = Color.red;
+                        Invoke("Distroy", 0.5f);
+
+                    }
+
+
+                }
+                
+                //_hit.collider.transform.GetComponent<Renderer>().material.color = Color.red;
+                //if (_hit.collider == _enemy)
+                // _enemy.transform.GetComponent<Renderer>().material.color = Color.red;
+
+            }
         }
-
     }
 
+    void Distroy()
+    {
+        _enemy.SetActive(false);
+
+    }
     void LookAtPoint()
     {
         float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
