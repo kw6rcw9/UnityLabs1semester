@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] GameObject _startPos;
-    [SerializeField] float _speed = 5;
+    private float _speed = 3;
     Rigidbody2D rb;
     private Vector2 _moveDirection;
     private void Start()

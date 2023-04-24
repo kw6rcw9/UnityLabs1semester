@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDead : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerDead : MonoBehaviour
    
     void Start()
     {
-        
+       
         _detect = _enemy.GetComponent<EnemyView>();
     }
 
@@ -30,6 +31,10 @@ public class PlayerDead : MonoBehaviour
     {
         transform.position = _startPos.transform.position;
         transform.GetComponent<Renderer>().material.color = Color.white;
+
+
+
+
     }
 
 

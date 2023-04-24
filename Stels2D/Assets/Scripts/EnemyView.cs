@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyView : MonoBehaviour
 {
-   private float _radius = 6.4f;
+   private float _radius = 10f;
      private float _angle = 49f;
     [SerializeField] private LayerMask _targetMask;
     [SerializeField] private LayerMask _obstructionMask;
@@ -62,7 +62,7 @@ public class EnemyView : MonoBehaviour
     private void OnDrawGizmos()
     {
         
-        Gizmos.color = Color.blue;
+        Gizmos.color = Color.magenta;
         Gizmos.DrawLine(transform.position, transform.position + DirectionFromAngle(-transform.eulerAngles.z, -_angle / 2) * _radius);
         Gizmos.DrawLine(transform.position, transform.position + DirectionFromAngle(-transform.eulerAngles.z, _angle / 2) * _radius);
 
