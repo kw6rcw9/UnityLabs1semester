@@ -40,6 +40,8 @@ public class PlayerDead : MonoBehaviour
 
         transform.position = _startPos.transform.position;
         transform.GetComponent<Renderer>().material.color = Color.white;
+        _enemy.GetComponent<Renderer>().material.color = Color.blue;
+        _enemy.SetActive(true);
 
 
 
