@@ -7,15 +7,16 @@ using UnityEngine;
 public class Bonus : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    private SpeedBonus _spBonus;
-    private InvisBonus _invis;
+    private ABonus _bonus;
+    
     
     private void Start()
     {
+
+
+        _bonus = new SpeedBonus();
         
-        
-        
-        
+
 
 
     }
@@ -29,9 +30,9 @@ public class Bonus : MonoBehaviour
     
     IEnumerator Coroutine()
     {
-        _spBonus.SpeedBoost(rb);
+        
         yield return new WaitForSeconds(3f);
-        _spBonus.StopBoost(rb);
+     
         
     }
 }

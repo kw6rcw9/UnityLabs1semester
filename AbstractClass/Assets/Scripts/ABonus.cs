@@ -10,12 +10,17 @@ public abstract class ABonus : MonoBehaviour
     {
         Debug.Log("Bonus");
     }
+
+    public virtual void SpeedBoost(Rigidbody2D rb)
+    {
+        Debug.Log("");
+    }
 }
 
 public class SpeedBonus : ABonus
 {
     private float  _speed = 2f;
-    public void SpeedBoost(Rigidbody2D rb)
+    public override void SpeedBoost(Rigidbody2D rb)
     {
         rb.velocity = new Vector2(rb.velocity.x * _speed, rb.velocity.y * _speed);
     }
@@ -25,7 +30,8 @@ public class SpeedBonus : ABonus
         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
         
     }
-    
+
+  
 }
 
 public class InvisBonus : ABonus
